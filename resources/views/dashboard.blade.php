@@ -1,0 +1,1 @@
+<h1>Hello, welocome {{$admin->name}}</h1>
