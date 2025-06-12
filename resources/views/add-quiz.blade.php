@@ -22,7 +22,6 @@
             <form action="/add-quiz" method="get">
 
                 <div class="mb-4">
-
                     <input type="text" id="admin-name" name="quiz" placeholder="Enter Quiz Name" value="{{ old('category') }}"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                     @error('category')
@@ -46,33 +45,51 @@
                 <button type="submit" class="btn btn-primary w-100 rounded-4 py-2">Add</button>
             </form>
             @else
-            <span class="text-success fw-bold">Quiz : {{session('quizDetails')->name}}</span>
+            <p class="text-success fw-bold m-0">Quiz : {{session('quizDetails')->name}}</p>
+            <span class="text-success fw-bold">Total MCQs : {{$totalMCQs}}</span>
+            @if($totalMCQs>0)
+            <a href="show-quiz/{{session('quizDetails')->id}}" class="text-decoration-none text-warning">Show MCQs</a>
+            @endif
             <h2 class="fs-4 text-center text-gray-800 mb-4">Add MCQs</h2>
             <form action="add-mcq" method="post">
                 @csrf
                 <div class="mb-4">
                     <textarea class="form-control px-3 py-2 border rounded-4 border-gray-300" name="question" rows="4" placeholder="Enter your question..."></textarea>
-
+                    @error('question')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <input type="text" id="admin-name" name="a" placeholder="Enter First Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
+                    @error('a')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <input type="text" id="admin-name" name="b" placeholder="Enter Second Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
+                    @error('b')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <input type="text" id="admin-name" name="c" placeholder="Enter Third Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
+                    @error('c')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
                     <input type="text" id="admin-name" name="d" placeholder="Enter Fourth Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
+                    @error('d')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -83,8 +100,10 @@
                         <option value="b">B</option>
                         <option value="c">C</option>
                         <option value="d">D</option>
-
                     </select>
+                    @error('correct_ans')
+                    <div class="text-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -94,6 +113,11 @@
 
                 <div class="mb-4">
                     <button type="submit" name="submit" value="done" class="btn btn-success w-100 rounded-4 py-2">Add and Submit</button>
+                </div>
+
+                <div class="mb-4">
+
+                    <a href="/end-quiz" class="btn btn-danger w-100 rounded-4 py-2">Finish Quiz</a>
                 </div>
 
             </form>
