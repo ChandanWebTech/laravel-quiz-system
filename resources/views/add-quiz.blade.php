@@ -46,53 +46,54 @@
                 <button type="submit" class="btn btn-primary w-100 rounded-4 py-2">Add</button>
             </form>
             @else
-            <span class="text-success bold">Quiz : {{session('quizDetails')->name}}</span>
+            <span class="text-success fw-bold">Quiz : {{session('quizDetails')->name}}</span>
             <h2 class="fs-4 text-center text-gray-800 mb-4">Add MCQs</h2>
-            <form action="" method="get">
+            <form action="add-mcq" method="post">
+                @csrf
                 <div class="mb-4">
-
-                    <textarea class="form-control px-3 py-2 border rounded-4 border-gray-300" rows="4" placeholder="Enter your question..."></textarea>
+                    <textarea class="form-control px-3 py-2 border rounded-4 border-gray-300" name="question" rows="4" placeholder="Enter your question..."></textarea>
 
                 </div>
+
                 <div class="mb-4">
-                    <input type="text" id="admin-name" name="quiz" placeholder="Enter First Option" value="{{ old('category') }}"
+                    <input type="text" id="admin-name" name="a" placeholder="Enter First Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                 </div>
 
                 <div class="mb-4">
-                    <input type="text" id="admin-name" name="quiz" placeholder="Enter Second Option" value="{{ old('category') }}"
+                    <input type="text" id="admin-name" name="b" placeholder="Enter Second Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                 </div>
 
                 <div class="mb-4">
-                    <input type="text" id="admin-name" name="quiz" placeholder="Enter Third Option" value="{{ old('category') }}"
+                    <input type="text" id="admin-name" name="c" placeholder="Enter Third Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                 </div>
 
                 <div class="mb-4">
-                    <input type="text" id="admin-name" name="quiz" placeholder="Enter Fourth Option" value="{{ old('category') }}"
+                    <input type="text" id="admin-name" name="d" placeholder="Enter Fourth Option"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                 </div>
 
                 <div class="mb-4">
-                    <select name="right answer"
+                    <select name="correct_ans"
                         class="form-control px-3 py-2 border rounded-4 border-gray-300" autocomplete="off">
                         <option value="">Select Right Answer</option>
-                        <option value="">A</option>
-                        <option value="">B</option>
-                        <option value="">C</option>
-                        <option value="">D</option>
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="c">C</option>
+                        <option value="d">D</option>
 
                     </select>
                 </div>
 
                 <div class="mb-4">
 
-                    <button type="submit" class="btn btn-primary w-100 rounded-4 py-2">Add More</button>
+                    <button type="submit" name="submit" value="add-more" class="btn btn-primary w-100 rounded-4 py-2">Add More</button>
                 </div>
 
                 <div class="mb-4">
-                    <button type="submit" class="btn btn-success w-100 rounded-4 py-2">Add and Submit</button>
+                    <button type="submit" name="submit" value="done" class="btn btn-success w-100 rounded-4 py-2">Add and Submit</button>
                 </div>
 
             </form>
